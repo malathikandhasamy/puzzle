@@ -38,7 +38,7 @@ $confirmpassword = $_POST['confirm-pwd'];
 $sql=" INSERT INTO register_form (name,uname,email,phonenumber,gender,country,psw,confirmpassword) VALUES('$name', '$uname', '$email', '$phonenumber', '$gender', '$country', '$psw', 
 '$confirmpassword')";
  if ($conn->query($sql) === TRUE) {
-   echo "Row created successfully";
+   echo "Your Information successfully added";
  } else {
     echo "Error: " . $sql . "<br>" . $conn->error;
  }
@@ -50,7 +50,7 @@ $result = $conn->query($sql);
 if ($result->num_rows > 0) {
     // output data of each row
     while($row = $result->fetch_assoc()) {
-        echo "Name: " . $row["name"]. " - Username: " . $row["uname"]. "Email:" .$row["email"]. "phonenumber:" .$row["phonenumber"]. "Gender:" .$row["gender"]. "Country:" .$row['country']. "password:" .$row['psw']. "confirmpassword:" .$row['confirmpassword'];
+         "Name: " . $row["name"]. " - Username: " . $row["uname"]. "Email:" .$row["email"]. "phonenumber:" .$row["phonenumber"]. "Gender:" .$row["gender"]. "Country:" .$row['country']. "password:" .$row['psw']. "confirmpassword:" .$row['confirmpassword'];
     }
 } else {
     echo "0 results";

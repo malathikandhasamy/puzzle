@@ -1,3 +1,6 @@
+$(document).ready( function () {
+     $('#user-data').DataTable();
+} );
 function regfo(){
 	var name=$('#name').val();
 	var username=$('#username').val();
@@ -110,10 +113,62 @@ function registerForm()
 {
 	window.location.href = "index.php";
 }
+$('.userdatatable').hide();
 function datatableForm()
 {
-	console.log("hello");
+$('.userdatatable').show();
 }
-$(document).ready( function () {
-    $('#user-data').DataTable();
-} );
+$('#check_all').on('click',function(){
+        if(this.checked){
+            $('.checkbox').each(function(){
+                this.checked = true;
+            });
+        }else{
+             $('.checkbox').each(function(){
+                this.checked = false;
+            });
+        }
+    });
+	$('.checkbox').on('click',function(){
+        if($('.checkbox:checked').length == $('.checkbox').length){
+            $('#check_all').prop('checked',true);
+        }else{
+            $('#check_all').prop('checked',false);
+        }
+    });
+function deleteForm()
+{
+	var data_store = new Array();
+	console.log(data_store);
+	if($('input:checkbox:checked').length>0)
+   	{
+    $('input:checkbox:checked').each(function(){
+    data_store.push($(this).attr('id'));
+   	$(this).closest('tr').remove();
+   	});
+   	sendresponse(data_store);
+   	console.log(sendresponse);
+   	}
+   	else
+   	{
+   	alert("no record selected");
+   	}
+   	function sendresponse(data_store)
+        {
+        $.ajax({
+        url	:'php/delete.php',
+        method	:'POST',
+        data   :{'data':data_store},
+        success :function(response)
+        {
+        	//console.log(response);
+        alert("delete successfully");
+        },
+        error :function(errresponse)
+        {
+        alert("error");
+        }
+        });
+        }
+
+}
